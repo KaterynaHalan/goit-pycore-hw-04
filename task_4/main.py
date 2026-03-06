@@ -5,12 +5,18 @@ def parse_input(user_input: str) -> tuple[str, list]:
 
 
 def add_contact(args: list, contacts: dict) -> str:
+    if len(args) != 2:
+        return "Invalid command."
+    
     name, phone = args
     contacts[name] = phone
     return "Contact added."
 
 
 def change_contact(args: list, contacts: dict) -> str:
+    if len(args) != 2:
+        return "Invalid command."
+    
     name, phone = args
 
     if name in contacts:
@@ -21,6 +27,9 @@ def change_contact(args: list, contacts: dict) -> str:
 
 
 def show_phone(args: list, contacts: dict) -> str:
+    if len(args) != 1:
+        print("Invalid command.")
+
     name = args[0]
     return contacts.get(name, "Contact not found.")
 
@@ -53,20 +62,11 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            if len(args) != 2:
-                print("Invalid command.")
-            else:
-                print(add_contact(args, contacts))
+            print(add_contact(args, contacts))
         elif command == "change":
-            if len(args) != 2:
-                print("Invalid command.")
-            else:
-                print(change_contact(args, contacts))
+            print(change_contact(args, contacts))
         elif command == "phone":
-            if len(args) != 1:
-                print("Invalid command.")
-            else:
-                print(show_phone(args, contacts))
+            print(show_phone(args, contacts))
         elif command == "all":
             print(show_all(contacts))
         else:
